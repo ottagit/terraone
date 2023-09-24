@@ -1,3 +1,7 @@
-.terraform
-terraform.tfstate
-terraform.tfstate.backup
+rootconfig/.terraform/
+rootconfig/terraform.tfstate
+rootconfig/terraform.tfstate.backup
+remotebackend/.terraform/
+remotebackend/terraform.tfstate
+remotebackend/.terraform/terraform.tfstate
+remotebackend/terraform.tfstate.backup
