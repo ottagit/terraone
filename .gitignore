@@ -1,7 +1,4 @@
-rootconfig/.terraform/
-rootconfig/terraform.tfstate
-rootconfig/terraform.tfstate.backup
-remotebackend/.terraform/
-remotebackend/terraform.tfstate
-remotebackend/.terraform/terraform.tfstate
-remotebackend/terraform.tfstate.backup
+stage/global/s3/.terraform/
+stage/services/webserver-cluster/terraform.tfstate.backup
+stage/services/webserver-cluster/.terraform
+global/s3/.terraform/

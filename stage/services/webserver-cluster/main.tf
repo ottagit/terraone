@@ -2,12 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "server_port" {
-  description = "The port the servers will use for HTTP requests"
-  type = number
-  default = 8080
-}
-
 /** create a launch configuration that specifies how to 
 configure each EC2 instance in the ASG **/
 resource "aws_launch_configuration" "example" {
@@ -144,7 +138,14 @@ data "aws_subnets" "default" {
   }
 }
 
-output "alb_dns_name" {
-  value = aws_lb.example.dns_name
-  description = "The domain name of the load balancer"
+# Configure Terraform to store the state in your S3 bucket (with encryption and locking)
+terraform {
+  backend "s3" {
+    bucket = "batoto-bitange"
+    key = "stage/services/webserver-cluster/terraform.tfstate"
+    region = "us-east-1"
+
+    dynamodb_table = "terraone-locks"
+    encrypt = true
+  }
 }
