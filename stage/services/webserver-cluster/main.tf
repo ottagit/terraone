@@ -10,11 +10,12 @@ resource "aws_launch_configuration" "example" {
   // resource attribute reference
   security_groups = [aws_security_group.instance.id]
 
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, world!" > index.html
-              nohup busybox httpd -f -p ${var.server_port} &
-  EOF
+  # Render the user data script as a template
+  user_data = templatefile("user-data.sh", {
+    server_port = var.server_port
+    db_address = data.terraform_remote_state.db.outputs.address
+    db_port = data.terraform_remote_state.db.outputs.port
+  })
 
   // Required when using a launch configuration with an ASG
   lifecycle {
@@ -147,5 +148,16 @@ terraform {
 
     dynamodb_table = "terraone-locks"
     encrypt = true
+  }
+}
+
+# Get the web server to read the outputs from the DB state file
+data "terraform_remote_state" "db" {
+  backend = "s3"
+
+  config = {
+    bucket = "batoto-bitange"
+    key = "stage/data-stores/mysql/terraform.tfstate"
+    region = "us-east-1"
   }
 }
