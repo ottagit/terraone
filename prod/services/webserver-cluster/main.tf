@@ -9,6 +9,7 @@ module "webserver_cluster" {
   db_remote_state_bucket = "batoto-bitange"
   db_remote_state_key = "prod/data-stores/mysql/terraform.tfstate"
 
+  instance_type = "m4.large"
   min_size = 3
   max_size = 10
   desired_capacity = 4
