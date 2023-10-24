@@ -8,3 +8,4 @@ prod/services/webserver-cluster/.terraform
 prod/data-stores/mysql/.terraform
 global/s3/.terraform
 global/iam/.terraform
+global/iam/terraform.tfstate*
