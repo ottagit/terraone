@@ -22,3 +22,14 @@ output "upper_usernames_conditional" {
 output "upper_names_map" {
   value = {for key, value in var.key_value_map : key => upper(value)}
 }
+
+# Loops with the for string directive
+# Render the IAM usernames
+output "for_string_directive" {
+  value = "%{ for name in var.user_names } ${name}, %{ endfor }"
+}
+
+# Render the IAM usernames with corresponding indices
+output "for_string_directive_index" {
+  value = "%{ for index, name in var.user_names } ${name} is at index ${index}, %{endfor}"
+}
