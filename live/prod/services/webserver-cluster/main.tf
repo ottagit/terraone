@@ -1,9 +1,5 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 module "webserver_cluster" {
-  source = "../../../modules/services/webserver-cluster"
+  source = "../../../../../modules/services/webserver-cluster"
 
   cluster_name = "webservers-prod"
   db_remote_state_bucket = "batoto-bitange"
@@ -13,6 +9,12 @@ module "webserver_cluster" {
   min_size = 3
   max_size = 10
   desired_capacity = 4
+
+  custom_tags = {
+    Owner = "infra-automation-team"
+    # Do not modify this infrastructure manually
+    ManagedBy = "terraform"
+  }
 }
 
 # Define a scheduled action

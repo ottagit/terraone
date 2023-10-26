@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 module "webserver_cluster" {
   source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.0.1"
 

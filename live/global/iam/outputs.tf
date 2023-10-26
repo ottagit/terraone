@@ -7,3 +7,18 @@ output "all_iam_users" {
   value = module.users
   description = "All IAM users created"
 }
+
+# Make all names uppercase
+output "upper_usernames" {
+  value = [for name in var.user_names : upper(name)]
+}
+
+# Make names that meet a given criteria uppercase and return an array
+output "upper_usernames_conditional" {
+  value = [for name in var.user_names : upper(name) if length(name) > 4]
+}
+
+# Return a map of uppercased values
+output "upper_names_map" {
+  value = {for key, value in var.key_value_map : key => upper(value)}
+}
