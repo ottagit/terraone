@@ -1,7 +1,7 @@
 variable "user_names" {
   description = "Create IAM users with these names"
   type = list(string)
-  default = [ "hawi", "otta", "bitange"]
+  default = [ "hawi", "otta", "oindoh"]
 }
 
 variable "key_value_map" {
@@ -12,4 +12,10 @@ variable "key_value_map" {
     city = "Kisumu"
     subcounty = "Kisumu West"
   }
+}
+
+variable "give_user_cloudwatch_full_access" {
+  description = "If true, user gets full access to CloudWatch"
+  type = bool
+  default = false
 }

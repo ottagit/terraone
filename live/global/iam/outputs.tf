@@ -33,3 +33,11 @@ output "for_string_directive" {
 output "for_string_directive_index" {
   value = "%{ for index, name in var.user_names } ${name} is at index ${index}, %{endfor}"
 }
+
+# Output the ARN of the created policy
+output "user_cloudwatch_policy_arn" {
+  value = one(concat(
+      aws_iam_user_policy_attachment.user_cloudwatch_full_access[*].policy_arn,
+      aws_iam_user_policy_attachment.user_cloudwatch_read_only[*].policy_arn
+    ))
+}
