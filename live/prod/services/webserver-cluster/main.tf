@@ -10,6 +10,9 @@ module "webserver_cluster" {
   max_size = 10
   desired_capacity = 4
   enable_auto_scaling = true
+  custom_tags = {
+    infra = "Code"
+  }
 }
 
 # Configure Terraform to store the state in your S3 bucket (with encryption and locking)

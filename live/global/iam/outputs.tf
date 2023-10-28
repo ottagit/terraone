@@ -30,8 +30,15 @@ output "for_string_directive" {
 }
 
 # Render the IAM usernames with corresponding indices
+# This leaves trailing commas
 output "for_string_directive_index" {
   value = "%{ for index, name in var.user_names } ${name} is at index ${index}, %{endfor}"
+}
+
+# Render the IAM usernames with corresponding indices
+# This strips any trailing commas or whitespace
+output "for_directive_index_strip" {
+  value = "%{ for i, name in var.user_names } ${name}%{ if i < length(var.user_names) - 1 }, %{ else }.%{ endif } %{ endfor }"
 }
 
 # Output the ARN of the created policy
