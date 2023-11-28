@@ -12,7 +12,7 @@ jobs:
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
           name: Create .terraformrc file locally
       - terraform/fmt:
-          path: ../../terraone/live/stage/services/webserver-cluster
+          path: .
       - terraform/validate:
           path: ../live/stage/services/webserver-cluster
       - terraform/init:
