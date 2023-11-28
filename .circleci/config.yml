@@ -11,10 +11,6 @@ jobs:
             echo "credentials \"app.terraform.io\" {token =
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
           name: Create .terraformrc file locally
-      - terraform/install:
-          arch: amd64
-          os: linux
-          terraform_version: 1.6.4
       - terraform/fmt:
           path: ../live//stage/services/webserver-cluster
       - terraform/validate:
