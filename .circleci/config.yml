@@ -12,22 +12,22 @@ jobs:
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
           name: Create .terraformrc file locally
       - terraform/fmt:
-          path: .
+          path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       - terraform/validate:
-          path: .
+          path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       - terraform/init:
           backend: true
-          backend_config_file: ../live/backend.hcl
-          path: .
+          backend_config_file: ~/workspace/environments/devops/iaac/terraform/terraone/live/backend.hcl
+          path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       - terraform/plan:
-          backend_config_file: backend.hcl
-          path: .
+          backend_config_file: ~/workspace/environments/devops/iaac/terraform/terraone/live/backend.hcl
+          path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       - terraform/apply:
-          backend_config_file: backend.hcl
-          path: .
+          backend_config_file: ~/workspace/environments/devops/iaac/terraform/terraone/live/backend.hcl
+          path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       # - terraform/destroy:
       #     path: ../live//stage/services/webserver-cluster
-    working_directory: stage/services/webserver-cluster
+    working_directory: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
 workflows:
   single-job-lifecycle:
     jobs:
