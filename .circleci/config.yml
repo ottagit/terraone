@@ -12,19 +12,19 @@ jobs:
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
           name: Create .terraformrc file locally
       - terraform/fmt:
-          path: ../live//stage/services/webserver-cluster
+          path: ../live/stage/services/webserver-cluster
       - terraform/validate:
-          path: ../live//stage/services/webserver-cluster
+          path: ../live/stage/services/webserver-cluster
       - terraform/init:
           backend: true
           backend_config_file: ../live/backend.hcl
-          path: ../live//stage/services/webserver-cluster
+          path: ../live/stage/services/webserver-cluster
       - terraform/plan:
           backend_config_file: ../live/backend.hcl
-          path: ../live//stage/services/webserver-cluster
+          path: ../live/stage/services/webserver-cluster
       - terraform/apply:
           backend_config_file: ../live/backend.hcl
-          path: ../live//stage/services/webserver-cluster
+          path: ../live/stage/services/webserver-cluster
       # - terraform/destroy:
       #     path: ../live//stage/services/webserver-cluster
     working_directory: ../live/stage/services/webserver-cluster
