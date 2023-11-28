@@ -1,0 +1,38 @@
+version: '2.1'
+orbs:
+  terraform: circleci/terraform@3.1
+jobs:
+  single-job-lifecycle:
+    executor: terraform/default
+    steps:
+      - checkout
+      - run:
+          command: >-
+            echo "credentials \"app.terraform.io\" {token =
+            \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+          name: Create .terraformrc file locally
+      - terraform/install:
+          arch: amd64
+          os: linux
+          terraform_version: 0.14.2
+      - terraform/fmt:
+          path: ../live//stage/services/webserver-cluster
+      - terraform/validate:
+          path: ../live//stage/services/webserver-cluster
+      - terraform/init:
+          backend: true
+          backend_config_file: ../live/backend.hcl
+          path: ../live//stage/services/webserver-cluster
+      - terraform/plan:
+          backend_config_file: ../live/backend.hcl
+          path: ../live//stage/services/webserver-cluster
+      - terraform/apply:
+          backend_config_file: ../live/backend.hcl
+          path: ../live//stage/services/webserver-cluster
+      # - terraform/destroy:
+      #     path: ../live//stage/services/webserver-cluster
+    working_directory: ../live/stage/services/webserver-cluster
+workflows:
+  single-job-lifecycle:
+    jobs:
+      - single-job-lifecycle
