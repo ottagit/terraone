@@ -14,20 +14,20 @@ jobs:
       - terraform/fmt:
           path: .
       - terraform/validate:
-          path: ../live/stage/services/webserver-cluster
+          path: .
       - terraform/init:
           backend: true
-          backend_config_file: ../live/backend.hcl
-          path: ../live/stage/services/webserver-cluster
+          backend_config_file: backend.hcl
+          path: .
       - terraform/plan:
-          backend_config_file: ../live/backend.hcl
-          path: ../live/stage/services/webserver-cluster
+          backend_config_file: backend.hcl
+          path: .
       - terraform/apply:
-          backend_config_file: ../live/backend.hcl
-          path: ../live/stage/services/webserver-cluster
+          backend_config_file: backend.hcl
+          path: .
       # - terraform/destroy:
       #     path: ../live//stage/services/webserver-cluster
-    working_directory: ../live/stage/services/webserver-cluster
+    working_directory: stage/services/webserver-cluster
 workflows:
   single-job-lifecycle:
     jobs:
