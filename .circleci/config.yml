@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           command: >-
-            cd live/stage/services/webcluster
+            cd ./live/stage/services/webcluster
           name: Navigate to staging environment
       - terraform/fmt:
           path: .
