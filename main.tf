@@ -21,10 +21,9 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
   protocol = "tcp"
   cidr_blocks = [ "0.0.0.0/0" ]
 }
-
 # Configure Terraform to store the state in your S3 bucket (with encryption and locking)
-terraform {
-  backend "s3" {
-    key = "stage/services/webserver-cluster/terraform.tfstate"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     key = "stage/services/webserver-cluster/terraform.tfstate"
+#   }
+# }
