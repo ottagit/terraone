@@ -8,10 +8,8 @@ jobs:
       - checkout
       - run:
           command: >-
-            echo "credentials \"app.terraform.io\" {token =
-            \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
             cd live/stage/services/webcluster
-          name: Create .terraformrc file locally
+          name: Navigate to staging environment
       - terraform/fmt:
           path: .
       - terraform/validate:
