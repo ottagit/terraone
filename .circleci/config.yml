@@ -6,15 +6,20 @@ workflows:
     jobs:
       - terraform/fmt:
           checkout: true
-          context: terraform
+          context: terraone
       - terraform/validate:
           checkout: true
-          context: terraform
+          context: terraone
           requires:
             - terraform/fmt
+      - terraform/init:
+          checkout: true
+          context: terraone
+          requires:
+            - terraform/validate
       - terraform/plan:
           checkout: true
-          context: terraform
+          context: terraone
           persist-workspace: true
           requires:
             - terraform/validate
@@ -24,9 +29,9 @@ workflows:
             - terraform/plan
       - terraform/apply:
           attach-workspace: true
-          context: terraform
+          context: terraone
           filters:
             branches:
-              only: master
+              only: main
           requires:
             - hold-apply
