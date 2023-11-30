@@ -10,9 +10,10 @@ jobs:
           command: >-
             echo "credentials \"app.terraform.io\" {token =
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+            cd live/stage/services/webcluster
           name: Create .terraformrc file locally
       - terraform/fmt:
-          path: '~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster'
+          path: .
       - terraform/validate:
           path: ~/workspace/environments/devops/iaac/terraform/terraone/live/stage/services/webserver-cluster
       - terraform/init:
