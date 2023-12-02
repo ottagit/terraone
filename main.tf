@@ -35,4 +35,15 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+terraform {
+  backend "s3" {
+    key            = module.webserver_cluster.db_remote_state_key
+    bucket         = module.webserver_cluster.db_remote_state_bucket
+    region         = "us-east-1"
+
+    dynamodb_table = "terraone-locks"
+    encrypt        = true
+  }
+}
+
 
