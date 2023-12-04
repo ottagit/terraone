@@ -34,4 +34,5 @@ workflows:
             branches:
               only: main
           requires:
+            - terraform/init
             - hold-destroy
