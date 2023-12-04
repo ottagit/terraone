@@ -7,16 +7,16 @@ workflows:
       - terraform/fmt:
           checkout: true
           context: terraone
+      - terraform/init:
+          checkout: true
+          context: terraone
+          requires:
+            - terraform/fmt
       - terraform/validate:
           checkout: true
           context: terraone
           requires:
             - terraform/fmt
-      - terraform/init:
-          checkout: true
-          context: terraone
-          requires:
-            - terraform/validate
       - terraform/plan:
           checkout: true
           context: terraone

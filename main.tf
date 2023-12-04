@@ -37,9 +37,9 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
 
 terraform {
   backend "s3" {
-    key            = module.webserver_cluster.db_remote_state_key
-    bucket         = module.webserver_cluster.db_remote_state_bucket
-    region         = "us-east-1"
+    key    = "stage/services/webserver-cluster/terraform.tfstate"
+    bucket = "batoto-bitange"
+    region = "us-east-1"
 
     dynamodb_table = "terraone-locks"
     encrypt        = true
