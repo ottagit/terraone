@@ -10,6 +10,7 @@ workflows:
       - terraform/init:
           checkout: true
           context: terraone
+          persist-workspace: true
           requires:
             - terraform/fmt
       - terraform/validate:
