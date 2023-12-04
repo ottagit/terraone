@@ -32,3 +32,9 @@ workflows:
               only: main
           requires:
             - hold-apply
+      - terraform/destroy:
+        attach-workspace: true
+        context: terraone
+        requires:
+          - terraform/apply
+
