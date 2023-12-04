@@ -20,21 +20,15 @@ workflows:
           persist-workspace: true
           requires:
             - terraform/validate
-      - hold-apply:
+      - hold-destroy:
           type: approval
           requires:
             - terraform/plan
-      - terraform/apply:
+      - terraform/destroy:
           attach-workspace: true
           context: terraone
           filters:
             branches:
               only: main
           requires:
-            - hold-apply
-      - terraform/destroy:
-        attach-workspace: true
-        context: terraone
-        requires:
-          - terraform/apply
-
+            - hold-destroy
