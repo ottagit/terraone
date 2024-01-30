@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.0.1"
+  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.3.0"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "batoto-bitange"
