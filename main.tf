@@ -18,10 +18,11 @@ module "webserver_cluster" {
   db_remote_state_bucket = "batoto-bitange"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
 
-  instance_type    = "t2.micro"
-  min_size         = 2
-  max_size         = 3
-  desired_capacity = 2
+  instance_type       = "t2.micro"
+  min_size            = 2
+  max_size            = 3
+  desired_capacity    = 2
+  enable_auto_scaling = true
 }
 
 # Expose an extra port in the staging environment for testing
