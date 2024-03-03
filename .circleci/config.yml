@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   terraform: circleci/terraform@3.2.1
 workflows:
-  destroy_infrastructure:
+  deploy_infrastructure:
     jobs:
       - terraform/fmt:
           checkout: true
@@ -20,15 +20,15 @@ workflows:
           persist-workspace: true
           requires:
             - terraform/validate
-      - hold-destroy:
+      - hold-apply:
           type: approval
           requires:
             - terraform/plan
-      - terraform/destroy:
+      - terraform/apply:
           attach-workspace: true
           context: terraone
           filters:
             branches:
               only: main
           requires:
-            - hold-destroy
+            - hold-apply
