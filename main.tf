@@ -1,8 +1,22 @@
+provider "aws" {
+  region = "us-east-1"
+  alias = "staging"
+
+  # Tags to apply to all AWS resources by default
+  default_tags {
+    tags = {
+      Owner = "infra-automation-team"
+      # Do not modify this infrastructure manually
+      ManagedBy = "terraform"
+    }
+  }
+}
+
 module "webserver_cluster" {
-  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.3.8"
+  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.4.0"
 
   providers = {
-    aws = aws
+    aws = aws.staging
   }
 
   cluster_name           = "webservers-stage"
