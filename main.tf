@@ -1,6 +1,10 @@
 module "webserver_cluster" {
   source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.3.8"
 
+  providers = {
+    aws = aws
+  }
+
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "batoto-bitange"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
