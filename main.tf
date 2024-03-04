@@ -1,6 +1,5 @@
 provider "aws" {
   region = "us-east-1"
-  alias  = "staging"
   # Tags to apply to all AWS resources by default
   default_tags {
     tags = {
@@ -13,10 +12,6 @@ provider "aws" {
 
 module "webserver_cluster" {
   source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.4.0"
-
-  providers = {
-    aws = aws.staging
-  }
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "batoto-bitange"
