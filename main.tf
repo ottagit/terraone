@@ -1,28 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-
-provider "aws" {
-  region = "us-east-1"
-
-  # Tags to apply to all AWS resources by default
-  default_tags {
-    tags = {
-      Owner = "infra-automation-team"
-      # Do not modify this infrastructure manually
-      ManagedBy = "terraform"
-    }
-  }
-}
-
 module "webserver_cluster" {
-  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.3.3"
+  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.3.8"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "batoto-bitange"
