@@ -1,6 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  alias = "staging"
+  alias  = "staging"
 
   # Tags to apply to all AWS resources by default
   default_tags {
