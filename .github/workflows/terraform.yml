@@ -16,7 +16,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           # Specify the IAM role to assume
-          role-to-assume: arn:aws:iam::377871994725:role/github-actions-role20240305210942420400000001
+          role-to-assume: arn:aws:iam::377871994725:role/github-actions-role20240305212815987000000001
           aws-region: us-east-1
 
       - uses: actions/checkout@v3
