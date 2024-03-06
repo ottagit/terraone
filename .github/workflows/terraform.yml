@@ -1,4 +1,4 @@
-name: Terraform Apply
+name: Deploy Web Cluster
 
 on:
   push:
