@@ -29,8 +29,8 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
   type              = "ingress"
   security_group_id = module.webserver_cluster.aws_security_group_id
 
-  from_port   = 54321
-  to_port     = 12345
+  from_port   = 123
+  to_port     = 456
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
