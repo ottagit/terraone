@@ -25,17 +25,6 @@ module "webserver_cluster" {
   enable_auto_scaling = true
 }
 
-# Expose an extra port in the staging environment for testing
-resource "aws_security_group_rule" "allow_testing_inbound" {
-  type              = "ingress"
-  security_group_id = module.webserver_cluster.aws_security_group_id
-
-  from_port   = 123
-  to_port     = 456
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-}
-
 data "aws_ami" "ubuntu_region1" {
   provider = aws.region_1
 
