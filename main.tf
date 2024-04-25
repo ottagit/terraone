@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-  source = "github.com/ottagit/modules//services/hello-world-app?ref=v0.9.1"
+  source = "github.com/ottagit/modules//services/hello-world-app?ref=v0.9.2"
 
   environment           = "staging"
   db_remote_state_bucket = "batoto-bitange"
