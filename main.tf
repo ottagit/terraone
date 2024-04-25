@@ -1,5 +1,6 @@
 provider "aws" {
   region = "us-east-1"
+  alias = "region_1"
   # Tags to apply to all AWS resources by default
   default_tags {
     tags = {
@@ -11,13 +12,13 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-  source = "github.com/ottagit/modules//services/webserver-cluster?ref=v0.4.0"
+  source = "github.com/ottagit/modules//services/hello-world-app?ref=v0.9.0"
 
-  cluster_name           = "webservers-stage"
+  environment           = "staging"
   db_remote_state_bucket = "batoto-bitange"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
 
-  instance_type       = "t2.micro"
+  ami                 = data.aws_ami.ubuntu_region1.id
   min_size            = 2
   max_size            = 3
   desired_capacity    = 2
@@ -33,6 +34,18 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
   to_port     = 456
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
+}
+
+data "aws_ami" "ubuntu_region1" {
+  provider = aws.region_1
+
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+  }
 }
 
 terraform {
