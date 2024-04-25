@@ -21,7 +21,7 @@ module "webserver_cluster" {
   ami                 = data.aws_ami.ubuntu_region1.id
   min_size            = 2
   max_size            = 3
-  desired_capacity    = 2
+  # desired_capacity    = 2
   enable_auto_scaling = true
 }
 
